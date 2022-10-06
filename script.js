@@ -1,6 +1,9 @@
-
+// Grabbing all inputs
+// inputs[0] and inputs[2] are normal inputs
+// inputs[1] and inputs[4] are range inputs
 const inputs =  [...document.querySelectorAll("input")];
 
+    //synchronising normal inputs with range ones
     inputs[0].addEventListener("input", () => 
     inputs[1].value = inputs[0].value)
 
@@ -13,10 +16,10 @@ const inputs =  [...document.querySelectorAll("input")];
     inputs[3].addEventListener("input", () => 
     inputs[2].value = inputs[3].value)
 
+
+// grabbing .calculate button and initializing the rest of the program on "click"
 let calculate = document.querySelector(".calculate");
 calculate.addEventListener("click", calc);
-
-
 
 function calc() {
     let resultBox = document.querySelector(".result-container");
@@ -32,11 +35,13 @@ function calc() {
     let height = parseInt(inputs[0].value);
     let weight = parseInt(inputs[2].value);
     
+    //before making calculation, first check if the inputs are numbers and if they are greater than 0
     if (!isNumeric(height) || height == 0) {
         result.innerText = "Check Height Input";
     }else if (!isNumeric(weight) || weight == 0) {
         result.innerText = "Check Weight Input";
     }else {
+        //main calculations and result display
         resultImage.style.display = "flex";
         let BMI = (weight/((height/100)**2)).toFixed(2);
         result.innerText = "Your BMI: " + BMI;
@@ -56,6 +61,7 @@ function calc() {
     
 }
 
+// Check if the input is a valid number
 function isNumeric(value) {
     return /^-?\d+$/.test(value);
 }
